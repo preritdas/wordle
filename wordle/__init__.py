@@ -2,7 +2,7 @@ words = ['aaron', 'aback', 'abaft', 'abase', 'abash', 'abate', 'abbey', 'abbot',
 
 class Wordle:
     def __init__(self, word: str, realWords: bool):
-        self.word = word
+        self.word = word.upper()
         self.realWords = realWords
     
     def run(self):
