@@ -6,7 +6,7 @@ Wordle is super fun and popular game. Unfortunately, it's new and nonstandard, m
 
 Currently, the module is logic based and runs in a shell. I'd love it if this project was forked into a GUI-based application, possibly using `pygame`, allowing users to take this a step further and deploy a version with a user-interface. As it stands, the best way I can think of to deploy Wordle to the web is by using an embedded Python console like [Trinket](https://trinket.io/features/python3) and putting it in 'run-only' mode so users can't see the source code (where the answer is). See an example of this in real deployment [here](https://wordle.preritdas.com).
 
-In any case, usage of this module is wickedly simple, if I may say so myself.
+In any case, usage of this module is wickedly simple.
 
 ```python
 import wordle
