@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
-VERSION = "1.6.5"
+VERSION = "1.6.8"
 DESCRIPTION = (
     "The popular word game recreated in Python, deployable with custom answers."
 )
@@ -20,7 +20,7 @@ setup(
     description=DESCRIPTION,
     long_description=getReadMe(),
     long_description_content_type="text/markdown",
-    packages=find_packages(where="wordle/"),
+    packages=find_packages(),
     install_requires=["requests==2.27.1"],
     keywords=["python", "games", "wordle", "english", "word games"],
     classifiers=[
