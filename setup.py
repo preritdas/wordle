@@ -1,8 +1,6 @@
 from setuptools import setup, find_packages
-import codecs
-import os
 
-VERSION = "1.6.9"
+VERSION = "1.7.0"
 DESCRIPTION = (
     "The popular word game recreated in Python, deployable with custom answers."
 )

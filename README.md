@@ -11,14 +11,14 @@ In any case, usage of this module is wickedly simple.
 ```python
 import wordle
 
-game = wordle.Wordle(word = 'HELLO', realWords = False)
+game = wordle.Wordle(word = 'HELLO', real_words = False)
 game.run()
 
 # Or even more simply:
-wordle.Wordle(word = 'hello', realWords = True).run() # runs in one line. 
+wordle.Wordle(word = 'hello', real_words = True).run() # runs in one line. 
 ```
 
-Instantiate a `game` object using `game = wordle.Wordle()`. The two positional requirements of the `Wordle` class are `word` and `realWords`. `word` is the answer to the game. If the object is instantiated with `realWords = True`, `word` must be a real, five-letter word or an exception will be raised, and you'll have to change your instantiation to reflect a real word. `realWords` is a boolean. If it's `True`, the package will check user's (in-game) guesses against a comprehensive inbuilt database of thousands of five-letter words. If it's `False`, any guess (real or not) will be accepted. In summary, `realWords` applies both to the answer in the code's instantiation _and_ in the user's in-game guesses.
+Instantiate a `game` object using `game = wordle.Wordle()`. The two positional requirements of the `Wordle` class are `word` and `real_words`. `word` is the answer to the game. If the object is instantiated with `real_words = True`, `word` must be a real, five-letter word or an exception will be raised, and you'll have to change your instantiation to reflect a real word. `real_words` is a boolean. If it's `True`, the package will check user's (in-game) guesses against a comprehensive inbuilt database of thousands of five-letter words. If it's `False`, any guess (real or not) will be accepted. In summary, `real_words` applies both to the answer in the code's instantiation _and_ in the user's in-game guesses.
 
 In the game of Wordle, part of the challenge is that guesses must be real words. This prevents users from guessing `"aeiou"` as their first attempt, for example. That's it's relevant and important for you to tell the `game` object whether it should check for real words or not.
 

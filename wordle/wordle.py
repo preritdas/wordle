@@ -1,12 +1,12 @@
 from wordle import dictionary
 
 class Wordle:
-    def __init__(self, word: str, realWords: bool):
+    def __init__(self, word: str, real_words: bool):
         self.word = word.upper()
-        self.realWords = realWords
+        self.real_words = real_words
 
     def run(self):
-        if self.realWords == True:
+        if self.real_words == True:
             if len(self.word) != 5 or self.word.lower() not in dictionary.words:
                 raise Exception("The answer has to be a five-letter real word.")
 
@@ -51,7 +51,7 @@ class Wordle:
                 if guess == self.word:
                     print(f"Congratulations, you passed the wordle in {i + 1} tries.")
                     quit()
-        elif self.realWords == False:
+        elif self.real_words == False:
             if len(self.word) != 5:
                 raise Exception("The answer has to be a five-letter word.")
 
