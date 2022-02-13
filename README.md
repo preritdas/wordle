@@ -23,3 +23,5 @@ Instantiate a `game` object using `game = wordle.Wordle()`. The two positional r
 In the game of Wordle, part of the challenge is that guesses must be real words. This prevents users from guessing `"aeiou"` as their first attempt, for example. That's it's relevant and important for you to tell the `game` object whether it should check for real words or not.
 
 _Note_: In version 1.5.10, the issue disallowing a lower-case `word` has been patched. `word = 'hello'` and `word = 'HELLO'` are both acceptable in the game initialization.
+
+To view the docstring (explainer) of a particular function, use `Wordle.run.__doc__` where `run` can be repalced with any other function. For example, running `print(Wordle.run.__doc__)` will return: `Run the game. Depends on bool real_words from instantiation.` Depending on your IDE, hovering over a function in the editor will show the function's docstring (works in VS Code).

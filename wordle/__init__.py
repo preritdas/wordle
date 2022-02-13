@@ -1,1 +1,1 @@
-from wordle.wordle import *
+from wordle.wordle import Wordle

@@ -1,11 +1,13 @@
 from wordle import dictionary
 
 class Wordle:
+    """Main Wordle game taking arguments of the answer and whether to check against the dictionary."""
     def __init__(self, word: str, real_words: bool):
         self.word = word.upper()
         self.real_words = real_words
 
     def run(self):
+        """Run the game. Depends on bool real_words from instantiation."""
         if self.real_words == True:
             if len(self.word) != 5 or self.word.lower() not in dictionary.words:
                 raise Exception("The answer has to be a five-letter real word.")
