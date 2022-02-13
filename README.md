@@ -24,4 +24,12 @@ In the game of Wordle, part of the challenge is that guesses must be real words.
 
 _Note_: In version 1.5.10, the issue disallowing a lower-case `word` has been patched. `word = 'hello'` and `word = 'HELLO'` are both acceptable in the game initialization.
 
-To view the docstring (explainer) of a particular function, use `Wordle.run.__doc__` where `run` can be repalced with any other function. For example, running `print(Wordle.run.__doc__)` will return: `Run the game. Depends on bool real_words from instantiation.` Depending on your IDE, hovering over a function in the editor will show the function's docstring (works in VS Code).
+To view the docstring (explainer) of a particular function, use `wordle.Wordle.run.__doc__` where `run` can be repalced with any other function. For example, running `print(wordle.Wordle.run.__doc__)` will return: `Run the game. Depends on bool real_words from instantiation.` Depending on your IDE, hovering over a function in the editor will show the function's docstring (works in VS Code).
+
+```python
+import wordle
+
+if __name__ == "__main__":
+    print(wordle.Wordle.__doc__)
+    print(wordle.Wordle.run.__doc__)
+```
