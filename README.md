@@ -2,6 +2,28 @@
 
 View on [GitHub](https://github.com/preritdas/wordle) and [PyPI](https://pypi.org/project/wordle-python/).
 
+----
+_Update v1.8.0_
+
+An issue was brought up on GitHub. If the answer was `"games"` for example, and you guessed `"trees"`, the program would capitalize _both_ of the letters `"e"` in your guess. It would behave in this way:
+
+```
+# Answer = 'games'
+
+Attempt 1 >>> trees
+t   r   E   E   *S*
+```
+
+I corrected the error with a functional `list(self.word)` that resets itself every attempt. Now the program behaves properly, in the way we'd expect:
+
+```
+# Answer = 'games'
+
+Attempt 1 >>> trees
+t   r   E   e   *S*
+```
+----
+
 Wordle is super fun and popular game. Unfortunately, it's new and nonstandard, meaning the backend technology is not prevalent and recreatable online. There are a couple web-based customizable Wordle tools, which work very well, but they're front-end only (you can't clone, copy, modify, or edit the back-end to deploy it to a website or run your own game). That said, the logic behind Wordle is quite simple which is why it's now a Python library, enabling all the functions of an open-sourced game.
 
 Currently, the module is logic based and runs in a shell. I'd love it if this project was forked into a GUI-based application, possibly using `pygame`, allowing users to take this a step further and deploy a version with a user-interface. As it stands, the best way I can think of to deploy Wordle to the web is by using an embedded Python console like [Trinket](https://trinket.io/features/python3) and putting it in 'run-only' mode so users can't see the source code (where the answer is). See an example of this in real deployment [here](https://wordle.preritdas.com).

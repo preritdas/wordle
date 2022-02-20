@@ -9,6 +9,9 @@ class Wordle:
     def run(self):
         """Run the game. Depends on bool real_words from instantiation."""
         if self.real_words == True:
+            # For duplicate checking
+            self.word_dup = list(self.word)
+
             if len(self.word) != 5 or self.word.lower() not in dictionary.words:
                 raise Exception("The answer has to be a five-letter real word.")
 
@@ -37,11 +40,13 @@ class Wordle:
                 # Response
                 response = []
                 for j in range(len(guess)):
-                    if guess[j] in self.word and guess[j] == self.word[j]:
+                    if guess[j] in self.word_dup and guess[j] == self.word[j]:
                         response.append(f"*{guess[j]}*   ")
-                    elif guess[j] in self.word and guess[j] != self.word[j]:
+                        self.word_dup.remove(guess[j]) # Duplicates
+                    elif guess[j] in self.word_dup and guess[j] != self.word[j]:
                         response.append(guess[j] + "   ")
-                    elif guess[j] not in self.word:
+                        self.word_dup.remove(guess[j]) # Duplicates
+                    elif guess[j] not in self.word_dup:
                         response.append(guess[j].lower() + "   ")
 
                 responseString = ""
