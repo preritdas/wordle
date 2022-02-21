@@ -40,7 +40,7 @@ class Wordle:
                 # Response
                 response = []
                 for j in range(len(guess)):
-                    if guess[j] in self.word_dup and guess[j] == self.word[j]:
+                    if guess[j] in self.word and guess[j] == self.word[j]:
                         response.append(f"*{guess[j]}*   ")
                         self.word_dup.remove(guess[j]) # Duplicates
                     elif guess[j] in self.word_dup and guess[j] != self.word[j]:
