@@ -3,7 +3,32 @@
 View on [GitHub](https://github.com/preritdas/wordle) and [PyPI](https://pypi.org/project/wordle-python/).
 
 ----
-_Update v1.8.0_
+## Updates
+
+### Version 1.9.0
+
+Completely redesigned the `Wordle` class as it was totally inefficient. It used to take the parameter `self.real_words`, given on object instantiation, and then run in two separate ways. The logic worked in this way:
+
+```python
+class Wordle:
+    def run(self):
+        if self.real_words == True:
+            run_with_logic_that_words_must_be_checked()
+        elif self.real_words == False:
+            run_with_logic_that_words_must_not_be_checked()
+```
+
+This was very inefficient because fixes and upgrades had to be made to both aspects of the `Wordle.run()` function. Initially it was necessary because the logic for checking against the dictionary was unique, but now, I'm hosting a dictionary of thousands of five-letter words [here](https://wordle.preritdas.com/words.txt). So, I rewrote the class to have this structure:
+
+```python
+class Wordle:
+    def run(self):
+        run_with_interspersed_realWords_conditions()
+```
+
+Which works much better. I introduced a `failed_dictionary_test` boolean which resets every time a new attempt is entered but allows the program to alert non-real words only if `self.real_words == True AND guess.lower() not in dictionary.words`. It's clean, faster, and more efficient!
+
+### Version 1.8.0
 
 An issue was brought up on GitHub. If the answer was `"games"` for example, and you guessed `"trees"`, the program would capitalize _both_ of the letters `"e"` in your guess. It would behave in this way:
 
@@ -23,6 +48,7 @@ Attempt 1 >>> trees
 t   r   E   e   *S*
 ```
 ----
+## Documentation
 
 Wordle is super fun and popular game. Unfortunately, it's new and nonstandard, meaning the backend technology is not prevalent and recreatable online. There are a couple web-based customizable Wordle tools, which work very well, but they're front-end only (you can't clone, copy, modify, or edit the back-end to deploy it to a website or run your own game). That said, the logic behind Wordle is quite simple which is why it's now a Python library, enabling all the functions of an open-sourced game.
 
