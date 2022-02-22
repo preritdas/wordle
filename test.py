@@ -1,3 +1,3 @@
 from wordle import wordle
 
-wordle.Wordle(word = 'games', real_words = False).run()
+wordle.Wordle(word = 'ultra', real_words = False).run()

@@ -54,17 +54,27 @@ class Wordle:
                 if guess.lower() in dictionary.words:
                     failed_dictionary_test = False
 
-            # Response
-            response = []
+            # prepare response list
+            response = ['', '', '', '', '']
+
+            # first correctness check
             for j in range(len(guess)):
                 if guess[j] in self.word_dup and guess[j] == self.word[j]:
-                    response.append(f"*{guess[j]}*   ")
-                    self.word_dup.remove(guess[j]) # Duplicates
-                elif guess[j] in self.word_dup and guess[j] != self.word[j]:
-                    response.append(guess[j] + "   ")
-                    self.word_dup.remove(guess[j]) # Duplicates
-                elif guess[j] not in self.word_dup:
-                    response.append(guess[j].lower() + "   ")
+                    response[j] = f"*{guess[j]}*   "
+                    self.word_dup.remove(guess[j])  # Duplicates
+
+            # next present and absent check
+            for j in range(len(guess)):
+                # already response skip
+                if response[j] != "":
+                    continue
+                # it's present(yellow)
+                if guess[j] in self.word_dup:
+                    response[j] = guess[j] + "   "
+                    self.word_dup.remove(guess[j])  # Duplicates
+                # other absent
+                else:
+                    response[j] = guess[j].lower() + "   "
 
             responseString = ""
             for letter in response:
