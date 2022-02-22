@@ -9,9 +9,6 @@ class Wordle:
     def run(self):
         """Run the game. Depends on bool real_words from instantiation."""
 
-        # For duplicate checking
-        self.word_dup = list(self.word)
-
         # Answer viability test
         if len(self.word) != 5:
             raise Exception("The answer has to be a five-letter word.")
@@ -22,6 +19,9 @@ class Wordle:
 
         # Begin iterating for attempts (6)
         for i in range(6):  # 6 attempts
+            # For duplicate checking
+            self.word_dup = list(self.word)
+
             failed_dictionary_test = False # by default
 
             # User attempt
