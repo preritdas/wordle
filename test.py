@@ -1,3 +1,3 @@
-import wordle
+from wordle import wordle
 
-wordle.Wordle(word = 'thank', real_words = True).run()
+wordle.Wordle(word = 'games', real_words = True).run()

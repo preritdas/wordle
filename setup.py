@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-VERSION = "1.8.1"
+VERSION = "1.8.2"
 DESCRIPTION = (
     "The popular word game recreated in Python, deployable with custom answers."
 )
 
-def getReadMe():
+def get_read_me():
     with open("README.md", "r") as f:
         return f.read()
 
@@ -16,7 +16,7 @@ setup(
     author="Prerit Das",
     author_email="<preritdas@gmail.com>",
     description=DESCRIPTION,
-    long_description=getReadMe(),
+    long_description=get_read_me(),
     long_description_content_type="text/markdown",
     packages=find_packages(),
     install_requires=["requests==2.27.1"],
