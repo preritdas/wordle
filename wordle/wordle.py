@@ -8,98 +8,75 @@ class Wordle:
 
     def run(self):
         """Run the game. Depends on bool real_words from instantiation."""
-        if self.real_words == True:
-            # For duplicate checking
-            self.word_dup = list(self.word)
 
-            if len(self.word) != 5 or self.word.lower() not in dictionary.words:
-                raise Exception("The answer has to be a five-letter real word.")
+        # For duplicate checking
+        self.word_dup = list(self.word)
 
-            for i in range(6):  # 6 attempts
-                # User attempt
+        # Answer viability test
+        if len(self.word) != 5:
+            raise Exception("The answer has to be a five-letter word.")
+        if self.real_words == True and self.word.lower() not in dictionary.words:
+            raise Exception(
+                "The answer has to be a real word as you indicated you want dictionary checking."
+                )
+
+        # Begin iterating for attempts (6)
+        for i in range(6):  # 6 attempts
+            failed_dictionary_test = False # by default
+
+            # User attempt
+            guess = str(input(f"Attempt {i + 1} >>> ")).upper()
+
+            # Cheating checks
+
+            # real_words = True
+            if self.real_words == True and guess.lower() not in dictionary.words:
+                failed_dictionary_test = True
+
+            while (
+                failed_dictionary_test == True
+                or " " in guess
+                or len(guess) > len(self.word)
+            ):
+                if " " in guess:
+                    print(
+                        "You can't have multiple words in your guess. Please run again."
+                    )
+                elif len(guess) > len(self.word):
+                    print(
+                        f"You can't guess a word with more than {len(list(self.word))} letters. Please run again."
+                    )
+                elif failed_dictionary_test == True: # Not a real word
+                    print("That's not a real word. Try again.")
                 guess = str(input(f"Attempt {i + 1} >>> ")).upper()
 
-                # Cheating checks
-                while (
-                    guess.lower() not in dictionary.words
-                    or " " in guess
-                    or len(guess) > len(self.word)
-                ):
-                    if " " in guess:
-                        print(
-                            "You can't have multiple words in your guess. Please run again."
-                        )
-                    elif len(guess) > len(self.word):
-                        print(
-                            f"You can't guess a word with more than {len(list(self.word))} letters. Please run again."
-                        )
-                    elif guess.lower() not in dictionary.words:
-                        print("That's not a real word. Try again.")
-                    guess = str(input(f"Attempt {i + 1} >>> ")).upper()
+                # Correct failed dictionary test if real word is guessed
+                if guess.lower() in dictionary.words:
+                    failed_dictionary_test = False
 
-                # Response
-                response = []
-                for j in range(len(guess)):
-                    if guess[j] in self.word_dup and guess[j] == self.word[j]:
-                        response.append(f"*{guess[j]}*   ")
-                        self.word_dup.remove(guess[j]) # Duplicates
-                    elif guess[j] in self.word_dup and guess[j] != self.word[j]:
-                        response.append(guess[j] + "   ")
-                        self.word_dup.remove(guess[j]) # Duplicates
-                    elif guess[j] not in self.word_dup:
-                        response.append(guess[j].lower() + "   ")
+            # Response
+            response = []
+            for j in range(len(guess)):
+                if guess[j] in self.word_dup and guess[j] == self.word[j]:
+                    response.append(f"*{guess[j]}*   ")
+                    self.word_dup.remove(guess[j]) # Duplicates
+                elif guess[j] in self.word_dup and guess[j] != self.word[j]:
+                    response.append(guess[j] + "   ")
+                    self.word_dup.remove(guess[j]) # Duplicates
+                elif guess[j] not in self.word_dup:
+                    response.append(guess[j].lower() + "   ")
 
-                responseString = ""
-                for letter in response:
-                    responseString += letter
+            responseString = ""
+            for letter in response:
+                responseString += letter
 
-                print(responseString)
+            print(responseString)
 
-                if guess == self.word:
+            if guess == self.word:
+                if (i + 1) == 1: # Passed in one try
+                    print(f"Congratulations, you passed the wordle in {i + 1} try.")
+                elif (i + 1) > 1:
                     print(f"Congratulations, you passed the wordle in {i + 1} tries.")
-                    quit()
-        elif self.real_words == False:
-            # For duplicate checking
-            self.word_dup = list(self.word)
-
-            if len(self.word) != 5:
-                raise Exception("The answer has to be a five-letter word.")
-
-            for i in range(6):  # 6 attempts
-                # User attempt
-                guess = str(input(f"Attempt {i + 1} >>> ")).upper()
-
-                # Cheating checks
-                while " " in guess or len(guess) > len(self.word):
-                    if " " in guess:
-                        print(
-                            "You can't have multiple words in your guess. Please run again."
-                        )
-                    elif len(guess) > len(self.word):
-                        print(
-                            f"You can't guess a word with more than {len(list(self.word))} letters. Please run again."
-                        )
-                    guess = str(input(f"Attempt {i + 1} >>> ")).upper()
-
-                # Response    
-                response = []
-                for j in range(len(guess)):
-                    if guess[j] in self.word_dup and guess[j] == self.word[j]:
-                        response.append(f"*{guess[j]}*   ")
-                        self.word_dup.remove(guess[j]) # Duplicates
-                    elif guess[j] in self.word_dup and guess[j] != self.word[j]:
-                        response.append(guess[j] + "   ")
-                        self.word_dup.remove(guess[j]) # Duplicates
-                    elif guess[j] not in self.word_dup:
-                        response.append(guess[j].lower() + "   ")
-
-                responseString = ""
-                for letter in response:
-                    responseString += letter
-
-                print(responseString)
-
-                if guess == self.word:
-                    print(f"Congratulations, you passed the wordle in {i + 1} tries.")
-                    quit()
-            print("You failed.")
+                else:
+                    raise Exception("Fatal iteration error for largest for loop.")
+                quit()
