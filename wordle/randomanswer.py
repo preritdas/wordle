@@ -4,7 +4,7 @@ import math
 
 UNIX_reference = 1645678800
 
-def random_answer(daily: bool):
+def random_answer(daily: bool = True):
     """Picks a random answer every day."""
     if daily == True:
         UNIX = dt.now().timestamp()
