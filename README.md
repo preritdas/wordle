@@ -17,7 +17,7 @@ import wordle
 wordle.Wordle(word = wordle.random_answer(), real_words = True).run()
 ```
 
-Or, you can access the random word directly in instantiation:
+Or, you can access the random word directly in instantiation (**new and preferred**):
 
 ```python
 import wordle
