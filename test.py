@@ -1,4 +1,5 @@
 from wordle import dictionary
 import random
 
-print(random.sample(dictionary.words, len(dictionary.words)))
+for item in dictionary.jumbled_words:
+    print(item, end = ' ')

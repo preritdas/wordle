@@ -8,5 +8,5 @@ def random_answer(daily: bool = True):
     """Picks a random answer every day."""
     if daily == True:
         UNIX = dt.now().timestamp()
-        iteration = int(math.floor((UNIX - UNIX_reference)/86400000))
+        iteration = int(math.floor((UNIX - UNIX_reference)/86400))
         return jumbled_words[iteration]
