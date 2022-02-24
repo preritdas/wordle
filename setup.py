@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = "1.9.3"
+VERSION = "2.1.0"
 DESCRIPTION = (
     "The popular word game recreated in Python, deployable with custom answers."
 )
@@ -19,7 +19,7 @@ setup(
     long_description=get_read_me(),
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=["requests==2.27.1"],
+    install_requires=["requests==2.27.1", "DateTime==4.4"],
     keywords=["python", "games", "wordle", "english", "word games"],
     classifiers=[
         "Programming Language :: Python :: 3",

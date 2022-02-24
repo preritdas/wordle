@@ -1,10 +1,13 @@
-from wordle import dictionary
+from wordle import dictionary, randomanswer
 
 class Wordle:
-    """Main Wordle game taking arguments of the answer and whether to check against the dictionary."""
-    def __init__(self, word: str, real_words: bool):
+    """Main Wordle game taking optional arguments of the answer and whether to check against the dictionary.
+        random_daily changes answer every day (see github/preritdas/wordle)."""
+    def __init__(self, word: str = 'hello', real_words: bool = True, random_daily: bool = False):
         self.word = word.upper()
         self.real_words = real_words
+        if random_daily == True:
+            self.word = randomanswer.random_answer(daily=True)
 
     def run(self):
         """Run the game. Depends on bool real_words from instantiation."""
@@ -90,3 +93,5 @@ class Wordle:
                 else:
                     raise Exception("Fatal iteration error for largest for loop.")
                 quit()
+        print("You failed.")
+        quit()

@@ -1,3 +1,4 @@
-from wordle import wordle
+from wordle import dictionary
+import random
 
-wordle.Wordle(word = 'ultra', real_words = False).run()
+print(random.sample(dictionary.words, len(dictionary.words)))

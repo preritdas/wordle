@@ -5,6 +5,34 @@ View on [GitHub](https://github.com/preritdas/wordle) and [PyPI](https://pypi.or
 ----
 ## Updates
 
+### Version 2.0.0
+
+A new function to get a random answer based on the day. You can deploy this Wordle and have it give you a random answer automatically every day! Instead of manually changing the answer, the program (can) automatically change its answer every day.
+
+Use `wordle.random_answer(daily = True)`. You can instantiate a game using this parameter:
+
+```python
+import wordle
+
+wordle.Wordle(word = wordle.random_answer(daily = True), real_words = True).run()
+```
+
+Or, you can access the random word directly in instantiation:
+
+```python
+import wordle
+
+wordle.Wordle(random_daily = True, real_words = True).run()
+```
+
+All arguments are now optional. By default, `word = 'hello'`, `real_words = True`, and `random_daily = False`. If you set `random_daily = True`, `word` is overwritten with a daily word. If you provide a `word` _and_ set `random_daily = True`, the `word` you chose will be overwritten. So, try to use _either_ `word` _or_ `random_daily`. 
+
+If this game is run in the same day, the answer `word` will be the same. Tomorrow, however, it will change. I did this using UNIX. The dictionary is shuffled and an iterator is calculated using multiples of 86400000 (milliseconds in a day). The program then gets a word from the randomized `dictionary.jumbled_words` list based on the iterator. 
+
+The behavior is that the program will have the same answer intraday but will automatically run with a new unique answer the next day. By standardizing this using UNIX time I avoided the need for a central database of "used" words. To reset it all, `dictionary.jumbled_words` has to be recalculated using `random.sample(dictionary.words, len(dictionary.words))`. 
+
+This is a much better way to deploy to the cloud as the game is **completely self-sufficient**!
+
 ### Version 1.9.0
 
 Completely redesigned the `Wordle` class as it was totally inefficient. It used to take the parameter `self.real_words`, given on object instantiation, and then run in two separate ways. The logic worked in this way:
