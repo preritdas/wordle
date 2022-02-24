@@ -7,7 +7,7 @@ class Wordle:
         self.word = word.upper()
         self.real_words = real_words
         if random_daily == True:
-            self.word = randomanswer.random_answer(daily=True)
+            self.word = randomanswer.random_answer(daily=True).upper()
 
     def run(self):
         """Run the game. Depends on bool real_words from instantiation."""

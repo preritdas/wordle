@@ -1,5 +1,3 @@
-from wordle import dictionary
-import random
+import wordle
 
-for item in dictionary.jumbled_words:
-    print(item, end = ' ')
+wordle.Wordle(random_daily = True).run()
