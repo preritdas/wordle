@@ -9,12 +9,12 @@ View on [GitHub](https://github.com/preritdas/wordle) and [PyPI](https://pypi.or
 
 A new function to get a random answer based on the day. You can deploy this Wordle and have it give you a random answer automatically every day! Instead of manually changing the answer, the program (can) automatically change its answer every day.
 
-Use `wordle.random_answer(daily = True)`. You can instantiate a game using this parameter:
+Use `wordle.random_answer(daily = True)` (Update: `daily` argument is now optional with default value `True`). You can instantiate a game using this parameter:
 
 ```python
 import wordle
 
-wordle.Wordle(word = wordle.random_answer(daily = True), real_words = True).run()
+wordle.Wordle(word = wordle.random_answer(), real_words = True).run()
 ```
 
 Or, you can access the random word directly in instantiation:
