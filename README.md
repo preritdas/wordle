@@ -5,6 +5,36 @@ View on [GitHub](https://github.com/preritdas/wordle) and [PyPI](https://pypi.or
 ----
 ## Updates
 
+### Version 2.2.0: Individual Guessing!
+
+This package can now be properly used to power the backend of a Wordle game. Initially, the `.run()` method had to be used to play the game. It would open a console, request guesses as inputs, and print out responses. That's not a viable solution to power the backend of a package user's application or game. 
+
+The `Wordle` class has two new submethods: `.send_guess()` and `.reset_guesses()`. 
+
+Instantiate an object with the answer and game options (dictionary, etc.). Then, send individual guesses and the method will return a response.
+
+```python
+import wordle
+
+# Instantiate a game object
+game = wordle.Wordle(word = 'grape', real_words = True)
+
+# Send your object a guess
+response = game.send_guess('adieu')
+# response = a d i e u
+
+# Send an invalid guess
+response = game.send_guess('yabadabadoo')
+# response = "You can't guess a word with more than 5 letters."
+# Note: invalid guesses don't count towards the guess log.
+
+# Send a 7th guess (only 6 allowed with log_guess = True)
+response = game.send_guess('seven')
+# response = "Out of guesses."
+```
+
+More information on how to use this new feature is below.
+
 ### Version 2.0.0
 
 A new function to get a random answer based on the day. You can deploy this Wordle and have it give you a random answer automatically every day! Instead of manually changing the answer, the program (can) automatically change its answer every day.
@@ -109,3 +139,9 @@ if __name__ == "__main__":
     print(wordle.Wordle.__doc__)
     print(wordle.Wordle.run.__doc__)
 ```
+
+### Individual Guessing
+
+This new feature was introduced in the Version 2.2.0 update at the top of the read-me. Here's some more usage information.
+
+The `.send_guess()` method has two parameters, one of which is optional. `guess` is a string and is necessary. `log_guess` is a boolean and is `True` by default. Log guessing is simply the program's way of tracking how many times a _valid_ guess has been sent to the object. It will only allow 6 valid guesses to be sent to it before it starts returning `"Out of guesses."` automatically. To send a guess and return a response without adding to the guesses log, use `log_guess = False`.
