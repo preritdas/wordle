@@ -114,6 +114,7 @@ class Wordle:
         # For duplicate checking
         self.word_dup = list(self.word)
         failed_dictionary_test = False # by default
+        guess = guess.upper() # for the logic
 
         # Cheating checks
 
