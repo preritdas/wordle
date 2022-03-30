@@ -165,6 +165,8 @@ class Wordle:
 
         if guess == self.word:
             guessed_correctly = True
+        else:
+            guessed_correctly = False
 
         # Guess Logging
         if log_guess:
