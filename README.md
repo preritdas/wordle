@@ -9,6 +9,10 @@ View on [GitHub](https://github.com/preritdas/wordle) and [PyPI](https://pypi.or
 
 This package can now be properly used to power the backend of a Wordle game. Initially, the `.run()` method had to be used to play the game. It would open a console, request guesses as inputs, and print out responses. That's not a viable solution to power the backend of a package user's application or game. 
 
+See a demo!
+
+[![asciicast](https://asciinema.org/a/U0PSdB4lw87B7CFddB9cQb7ju.svg)](https://asciinema.org/a/U0PSdB4lw87B7CFddB9cQb7ju)
+
 The `Wordle` class has two new submethods: `.send_guess()` and `.reset_guesses()`. 
 
 Instantiate an object with the answer and game options (dictionary, etc.). Then, send individual guesses and the method will return a response.
