@@ -110,7 +110,7 @@ t   r   E   e   *S*
 
 Wordle is super fun and popular game. Unfortunately, it's new and nonstandard, meaning the backend technology is not prevalent and recreatable online. There are a couple web-based customizable Wordle tools, which work very well, but they're front-end only (you can't clone, copy, modify, or edit the back-end to deploy it to a website or run your own game). That said, the logic behind Wordle is quite simple which is why it's now a Python library, enabling all the functions of an open-sourced game.
 
-Currently, the module is logic based and runs in a shell. I'd love it if this project was forked into a GUI-based application, possibly using `pygame`, allowing users to take this a step further and deploy a version with a user-interface. As it stands, the best way I can think of to deploy Wordle to the web is by using an embedded Python console like [Trinket](https://trinket.io/features/python3) and putting it in 'run-only' mode so users can't see the source code (where the answer is). See an example of this in real deployment [here](https://wordle.preritdas.com).
+Currently, the module is logic based and runs in a shell (as of v2.2.0, the new individual guess methods enable Wordle to be deployed practically anywhere). I'd love it if this project was forked into a GUI-based application, possibly using `pygame`, allowing users to take this a step further and deploy a version with a user-interface. As it stands, the best way I can think of to deploy Wordle to the web is by using an embedded Python console like [Trinket](https://trinket.io/features/python3) and putting it in 'run-only' mode so users can't see the source code (where the answer is). See an example of this in real deployment [here](https://wordle.preritdas.com).
 
 In any case, usage of this module is wickedly simple.
 
@@ -143,5 +143,29 @@ if __name__ == "__main__":
 ### Individual Guessing
 
 This new feature was introduced in the Version 2.2.0 update at the top of the read-me. Here's some more usage information.
+
+Here's some example usage. 
+
+Instantiate an object with the answer and game options (dictionary, etc.). Then, send individual guesses and the method will return a response.
+
+```python
+import wordle
+
+# Instantiate a game object
+game = wordle.Wordle(word = 'grape', real_words = True)
+
+# Send your object a guess
+response = game.send_guess('adieu')
+# response = a d i e u
+
+# Send an invalid guess
+response = game.send_guess('yabadabadoo')
+# response = "You can't guess a word with more than 5 letters."
+# Note: invalid guesses don't count towards the guess log.
+
+# Send a 7th guess (only 6 allowed with log_guess = True)
+response = game.send_guess('seven')
+# response = "Out of guesses."
+```
 
 The `.send_guess()` method has two parameters, one of which is optional. `guess` is a string and is necessary. `log_guess` is a boolean and is `True` by default. Log guessing is simply the program's way of tracking how many times a _valid_ guess has been sent to the object. It will only allow 6 valid guesses to be sent to it before it starts returning `"Out of guesses."` automatically. To send a guess and return a response without adding to the guesses log, use `log_guess = False`.
