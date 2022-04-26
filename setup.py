@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = "2.2.2"
+VERSION = "2.3.2"
 DESCRIPTION = (
     "The popular word game recreated in Python, deployable with custom answers."
 )
