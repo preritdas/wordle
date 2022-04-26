@@ -64,7 +64,7 @@ class Wordle:
                 guess = str(input(f"Attempt {i + 1} >>> ")).upper()
 
                 # Correct failed dictionary test if real word is guessed
-                if guess.lower() in dictionary.words:
+                if self.real_words and guess.lower() in dictionary.words:
                     failed_dictionary_test = False
 
             # prepare response list
@@ -131,30 +131,30 @@ class Wordle:
         if self.real_words == True and guess.lower() not in dictionary.words:
             failed_dictionary_test = True
 
-        while (
-            failed_dictionary_test == True
-            or " " in guess
-            or len(guess) > len(self.word)
-        ):
-            if " " in guess:
-                return "You can't have multiple words in your guess."
-            elif self.enforce_len and len(guess) > len(self.word):
-                return f"You can't guess a word with more than {len(list(self.word))} letters."
-            elif failed_dictionary_test == True: # Not a real word
-                return "That's not a real word."
+        if " " in guess:
+            return "You can't have multiple words in your guess."
+        elif self.enforce_len and len(guess) > len(self.word):
+            return f"You can't guess a word with more than {len(list(self.word))} letters."
+        elif failed_dictionary_test == True: # Not a real word
+            return "That's not a real word."
 
-            # Correct failed dictionary test if real word is guessed
-            if guess.lower() in dictionary.words:
-                failed_dictionary_test = False
+        # Correct failed dictionary test if real word is guessed
+        if self.real_words and guess.lower() in dictionary.words:
+            failed_dictionary_test = False
 
         # prepare response list
-        response = ['', '', '', '', '']
+        response = ['' for _ in range(len(guess))]
 
         # first correctness check
         for j in range(len(guess)):
-            if guess[j] in self.word_dup and guess[j] == self.word[j]:
-                response[j] = f"*{guess[j]}*   "
-                self.word_dup.remove(guess[j])  # Duplicates
+            # out of range issue
+            try:
+                if guess[j] == self.word[j]:
+                    response[j] = f"*{guess[j]}*   "
+                    self.word_dup.remove(guess[j])
+                    continue
+            except IndexError:
+                pass
 
         # next present and absent check
         for j in range(len(guess)):
