@@ -1,11 +1,18 @@
 from wordle import dictionary, randomanswer
 
+
 class Wordle:
     """Main Wordle game taking optional arguments of the answer and whether to check against the dictionary.
         random_daily changes answer every day (see github/preritdas/wordle)."""
-    def __init__(self, word: str = 'hello', real_words: bool = True, random_daily: bool = False):
+    def __init__(
+        self, word: str = 'hello', 
+        enforce_len: bool = True, 
+        real_words: bool = True, 
+        random_daily: bool = False
+    ):
         self.word = word.upper()
         self.real_words = real_words
+        self.enforce_len = enforce_len
         if random_daily == True:
             self.word = randomanswer.random_answer(daily=True).upper()
 
@@ -16,7 +23,7 @@ class Wordle:
         """Run the game. Depends on bool real_words from instantiation."""
 
         # Answer viability test
-        if len(self.word) != 5:
+        if self.enforce_len and len(self.word) != 5:
             raise Exception("The answer has to be a five-letter word.")
         if self.real_words == True and self.word.lower() not in dictionary.words:
             raise Exception(
@@ -61,7 +68,9 @@ class Wordle:
                     failed_dictionary_test = False
 
             # prepare response list
-            response = ['', '', '', '', '']
+            response = []
+            for _ in range(len(self.word_dup)):
+                response.append('')
 
             # first correctness check
             for j in range(len(guess)):
@@ -129,7 +138,7 @@ class Wordle:
         ):
             if " " in guess:
                 return "You can't have multiple words in your guess."
-            elif len(guess) > len(self.word):
+            elif self.enforce_len and len(guess) > len(self.word):
                 return f"You can't guess a word with more than {len(list(self.word))} letters."
             elif failed_dictionary_test == True: # Not a real word
                 return "That's not a real word."
