@@ -1,4 +1,4 @@
-words = [
+words: set[str] = {
     "aaron",
     "aback",
     "abaft",
@@ -4265,9 +4265,9 @@ words = [
     "zones",
     "zooms",
     "zulus",
-]
+}
 
-jumbled_words = [
+jumbled_words: list[str] = [
     "votes",
     "ended",
     "bails",
@@ -8533,5 +8533,5 @@ jumbled_words = [
     "bated",
     "blase",
     "unite",
-    "pilot",
+    "pilot"
 ]

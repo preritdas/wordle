@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from Cython.Build import cythonize
 
 VERSION = "2.3.3"
 DESCRIPTION = (
@@ -19,6 +20,7 @@ setup(
     long_description=get_read_me(),
     long_description_content_type="text/markdown",
     packages=find_packages(),
+    ext_modules=cythonize(['wordle/randomanswer.pyx', 'wordle/dictionary.pyx'], language_level=3),
     install_requires=["requests==2.27.1", "DateTime==4.4"],
     keywords=["python", "games", "wordle", "english", "word games"],
     classifiers=[
