@@ -1,3 +1,7 @@
+![tests](https://github.com/preritdas/wordle/actions/workflows/pytest.yml/badge.svg)
+![pypi deployment](https://github.com/preritdas/wordle/actions/workflows/python-publish.yml/badge.svg)
+[![PyPI version](https://badge.fury.io/py/wordle-python.svg)](https://badge.fury.io/py/wordle-python)
+
 # Wordle
 
 View on [GitHub](https://github.com/preritdas/wordle) and [PyPI](https://pypi.org/project/wordle-python/).
